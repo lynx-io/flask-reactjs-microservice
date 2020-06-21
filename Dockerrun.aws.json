@@ -1,0 +1,57 @@
+{
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "name": "nginx",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80
+                }
+            ]
+        },
+        {
+            "environment": [
+                {
+                    "name": "APP_SETTINGS",
+                    "value": "project.config.ProductionConfig"
+                },
+                {
+                    "name": "DATABASE_URL",
+                    "value": "postgres://postgres:postgres@users-db:5432/users_dev"
+                },
+                {
+                    "name": "DATABASE_TEST_URL",
+                    "value": "postgres://postgres:postgres@users-db:5432/users_test"
+                }
+            ],
+            "essential": true,
+            "links": [
+                "users-db"
+            ],
+            "name": "users"
+        },
+        {
+            "environment": [
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "postgres"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "postgres"
+                }
+            ],
+            "essential": true,
+            "name": "users-db",
+            "portMappings": [
+                {
+                    "containerPort": 5432,
+                    "hostPort": 5435
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": []
+}
