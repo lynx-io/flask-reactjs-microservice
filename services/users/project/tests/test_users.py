@@ -1,5 +1,4 @@
 import json
-import unittest
 from project import db
 from project.api.models import User
 from project.tests.base import BaseTestCase
@@ -20,7 +19,8 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 "/users",
-                data=json.dumps({"username": "jesus", "email": "jesus@gmail.com"}),
+                data=json.dumps(
+                    {"username": "jesus", "email": "jesus@gmail.com"}),
                 content_type="application/json",
             )
             data = json.loads(response.data.decode())
@@ -42,7 +42,9 @@ class TestUserService(BaseTestCase):
             self.assertIn("fail", data["status"])
 
     def test_add_user_invalid_json_keys(self):
-        """Ensure error is thrown if the JSON object does not have a username key."""
+        """
+        Ensure error is thrown if the JSON object does not have a username key.
+        """
         with self.client:
             response = self.client.post(
                 "/users",
@@ -62,12 +64,14 @@ class TestUserService(BaseTestCase):
         with self.client:
             self.client.post(
                 "/users",
-                data=json.dumps({"username": "jesus", "email": "jesus@gmail.com"}),
+                data=json.dumps(
+                    {"username": "jesus", "email": "jesus@gmail.com"}),
                 content_type="application/json",
             )
             response = self.client.post(
                 "/users",
-                data=json.dumps({"username": "jesus", "email": "jesus@gmail.com"}),
+                data=json.dumps(
+                    {"username": "jesus", "email": "jesus@gmail.com"}),
                 content_type="application/json",
             )
             data = json.loads(response.data.decode())
@@ -114,7 +118,7 @@ class TestUserService(BaseTestCase):
             self.assertIn("fail", data["status"])
 
     def test_all_users(self):
-        """ 
+        """
         Ensure get all users behaves correctly.
         """
         add_user(username="jesus", email="jesus@gmail.com")
@@ -128,5 +132,6 @@ class TestUserService(BaseTestCase):
             self.assertIn("jesus", data["data"]["users"][0]["username"])
             self.assertIn("jesus@gmail.com", data["data"]["users"][0]["email"])
             self.assertIn("jesus1", data["data"]["users"][1]["username"])
-            self.assertIn("jesus1@gmail.com", data["data"]["users"][1]["email"])
+            self.assertIn("jesus1@gmail.com",
+                          data["data"]["users"][1]["email"])
             self.assertIn("success", data["status"])
