@@ -1,30 +1,26 @@
-FROM python:3.8
-
+FROM python:3.6.4
 
 # install environment dependencies
- RUN apt-get update -yqq \
- 	&& apt-get install -yqq --no-install-recommends \
- 		netcat \
- 	&& apt-get -q clean
-
+RUN apt-get update -yqq \
+  && apt-get install -yqq --no-install-recommends \
+    netcat \
+  && apt-get -q clean
 
 # set working directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+
 # add requirements
 COPY ./requirements.txt /usr/src/app/requirements.txt
-# install requirements
 
+# install requirements
 RUN pip install -r requirements.txt
+
+# add entrypoint.sh
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 
 # add app
 COPY . /usr/src/app
 
-# add entrypoint.sh
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-#ENTRYPOINT ["sh", "./entrypoint.sh"]
 # run server
-
-RUN chmod +x /usr/src/app/entrypoint.sh
-#CMD ["./entrypoint.sh"]
-ENTRYPOINT ["bash","entrypoint.sh"]
+CMD ["./entrypoint.sh"]
