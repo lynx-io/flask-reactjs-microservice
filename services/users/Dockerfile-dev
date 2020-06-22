@@ -26,4 +26,5 @@ COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 # run server
 
 RUN chmod +x /usr/src/app/entrypoint.sh
-CMD ["./entrypoint.sh"]
+#CMD ["./entrypoint.sh"]
+ENTRYPOINT ["bash","entrypoint.sh"]
