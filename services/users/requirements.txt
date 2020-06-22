@@ -5,3 +5,4 @@ Flask-Testing
 gunicorn
 coverage==4.4.2
 flake8
+flask-debugtoolbar==0.10.1
