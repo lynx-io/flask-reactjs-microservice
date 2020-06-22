@@ -9,6 +9,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 before_script:
+  - chmod +x ./services/users/entrypoint.sh
   - docker-compose -f docker-compose-dev.yml build
   - docker-compose -f docker-compose-dev.yml up -d
 script:
