@@ -22,6 +22,6 @@ COPY . /usr/src/app
 
 # add entrypoint.sh
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-
-# # run server
-CMD ["./entrypoint.sh"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]
+# run server
+#CMD ["./entrypoint.sh"]
