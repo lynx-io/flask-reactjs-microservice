@@ -22,5 +22,7 @@ COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 # add app
 COPY . /usr/src/app
 RUN ["chmod","+x","/usr/src/app/entrypoint.sh"]
+
+RUN ["ls","-l","/usr/src/app/entrypoint.sh"]
 # run server
 CMD ["./entrypoint.sh"]
