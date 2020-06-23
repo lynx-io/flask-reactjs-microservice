@@ -1,6 +1,6 @@
 __pycache__
 env
-
+__snapshots__
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
