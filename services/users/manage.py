@@ -5,7 +5,7 @@ import unittest
 import coverage
 
 COV = coverage.coverage(
-    branch=True, include="project/*", omit=["project/tests/*", "project/config.py",]
+    branch=True, include="project/*", omit=["project/tests/*", "project/config.py", ]
 )
 COV.start()
 
@@ -51,8 +51,12 @@ def test():
 @cli.command()
 def seed_db():
     """Seeds the database."""
-    db.session.add(User(username="jesus", email="jesus@gmail.com"))
-    db.session.add(User(username="carlos", email="carlos@gmail.com"))
+    db.session.add(
+        User(username="jesus", email="jesus@gmail.com",
+             password="greaterthaneight"))
+    db.session.add(
+        User(username="carlos", email="carlos@gmail.com",
+             password="greaterthaneight"))
     db.session.commit()
 
 
