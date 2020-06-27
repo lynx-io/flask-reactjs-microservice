@@ -1,4 +1,5 @@
 import React from 'react';
+
 const UsersList = (props) => {
     return (
         <div>
@@ -7,9 +8,10 @@ const UsersList = (props) => {
                     return (
                         <h4
                             key={user.id}
-                            className="card card-body bg-light"
+                            className="well"
                         >{user.username}
-                        </h4>)
+                        </h4>
+                    )
                 })
             }
         </div>
